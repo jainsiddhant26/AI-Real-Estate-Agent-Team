@@ -32,8 +32,8 @@ There is no single tool that:
 | Agent | Job | Technology |
 |-------|-----|------------|
 | Agent 1 — Property Search | Scrapes live listings from selected portals into a typed schema | Firecrawl Extract API |
-| Agent 2 — Market Analysis | Analyzes city-level trends, neighbourhoods, investment outlook, risks | LLaMA 3.3 70B via Groq |
-| Agent 3 — Property Valuation | Rates each property: Fair / Overpriced / Underpriced + one clear action | LLaMA 3.3 70B via Groq |
+| Agent 2 — Market Analysis | Analyzes city-level trends, neighbourhoods, investment outlook, risks | GPT-OSS 120B via Groq |
+| Agent 3 — Property Valuation | Rates each property: Fair / Overpriced / Underpriced + one clear action | GPT-OSS 120B via Groq |
 
 ---
 
@@ -46,9 +46,9 @@ User Inputs
     ↓
 [Agent 1] Property Search — Firecrawl Extract API
     ↓  Structured PropertyListing objects (Pydantic)
-[Agent 2] Market Analysis — Groq + LLaMA 3.3 70B
+[Agent 2] Market Analysis — Groq + GPT-OSS 120B
     ↓  City & locality context
-[Agent 3] Property Valuation — Groq + LLaMA 3.3 70B
+[Agent 3] Property Valuation — Groq + GPT-OSS 120B
     ↓
 Downloadable Markdown Report
 ```
@@ -74,13 +74,13 @@ Downloadable Markdown Report
            ┌──────────▼───────────┐
            │  Agent 2: Market     │
            │  Agno + Groq         │
-           │  LLaMA 3.3 70B       │
+           │  GPT-OSS 120B       │
            └──────────┬───────────┘
                       │ Markdown analysis
            ┌──────────▼───────────┐
            │  Agent 3: Valuation  │
            │  Agno + Groq         │
-           │  LLaMA 3.3 70B       │
+           │  GPT-OSS 120B       │
            └──────────┬───────────┘
                       │
            ┌──────────▼───────────┐
@@ -93,7 +93,7 @@ Downloadable Markdown Report
 
 - **UI & Orchestration:** Streamlit (`app.py`)
 - **Agent Framework:** Agno (Python-native, open source)
-- **LLM Provider:** Groq — LLaMA 3.3 70B versatile (free tier)
+- **LLM Provider:** Groq — GPT-OSS 120B (free tier)
 - **Web Extraction:** Firecrawl Python client (free tier)
 - **Data Validation:** Pydantic v2
 - **Configuration:** `.env` locally · Streamlit Secrets on cloud
@@ -107,7 +107,7 @@ Downloadable Markdown Report
 |-------|------|------|
 | UI & Orchestration | Streamlit | Free |
 | Agent Framework | Agno | Free / Open Source |
-| LLM Inference | Groq (LLaMA 3.3 70B) | Free — 1,000 req/day |
+| LLM Inference | Groq (GPT-OSS 120B) | Free — 1,000 req/day |
 | Web Extraction | Firecrawl Extract API | Free — 500 credits |
 | Data Modelling | Pydantic v2 | Free |
 | Config & Secrets | python-dotenv + Streamlit Secrets | Free |
@@ -168,9 +168,9 @@ If Firecrawl returns no results, the app falls back to 3 curated demo listings a
 
 ### 6. Groq over Gemini
 
-**Decision:** Switched from Gemini 2.0 Flash to Groq + LLaMA 3.3 70B mid-build.
+**Decision:** Switched from Gemini 2.0 Flash to Groq + GPT-OSS 120B mid-build.
 
-**Why:** Gemini's free tier returned `limit: 0` and `404` errors for Indian API keys. Groq's free tier is more generous (1,000 req/day), significantly faster (custom inference silicon), and LLaMA 3.3 70B produces higher-quality market analysis.
+**Why:** Gemini's free tier returned `limit: 0` and `404` errors for Indian API keys. Groq's free tier is more generous (1,000 req/day), significantly faster (custom inference silicon), and GPT-OSS 120B produces higher-quality market analysis.
 
 **Learning:** Always validate API free-tier availability by geography before committing to a model provider.
 
@@ -236,7 +236,7 @@ Used in three places:
 
 - Python 3.9+
 - Free API keys:
-  - [console.groq.com](https://console.groq.com) — Groq (LLaMA 3.3 70B)
+  - [console.groq.com](https://console.groq.com) — Groq (GPT-OSS 120B)
   - [firecrawl.dev](https://www.firecrawl.dev) — Web extraction
 
 ### Setup
