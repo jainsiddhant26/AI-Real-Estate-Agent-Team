@@ -194,7 +194,7 @@ def run_property_search(city, locality, budget_range, bhk, prop_type, special, p
 # ─── Agent 2: Market Analysis ──────────────────────────────────────────────────
 def run_market_analysis(city, listings):
     agent = Agent(
-        model=Groq(id="llama-3.3-70b-versatile", api_key=groq_key),
+        model=Groq(id="openai/gpt-oss-120b", api_key=groq_key),
         description=f"You are a senior real estate market analyst specializing in {city}, India.",
         instructions=[
             "Give concise, data-driven analysis. Use bullet points.",
@@ -230,7 +230,7 @@ def run_market_analysis(city, listings):
 # ─── Agent 3: Property Valuation ──────────────────────────────────────────────
 def run_property_valuation(listings, market_analysis):
     agent = Agent(
-        model=Groq(id="llama-3.3-70b-versatile", api_key=groq_key),
+        model=Groq(id="openai/gpt-oss-120b", api_key=groq_key),
         description="You are a property valuation expert for Indian real estate.",
         instructions=[
             "Be direct and decisive. No vague language.",
